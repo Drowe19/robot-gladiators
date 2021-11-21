@@ -1,24 +1,47 @@
-
-var playerHealth =100;
-var playerAttack =10;
-
-var enemyName = "Roborto";
-var enemyHealth = 50;
-var enemyAttack = 12; 
-var playerMoney = 10;
+//Game States
+//"WIN" - Player robot has defeated all enemy-robots
+//  *Fight all enemy-robots
+//  *Defeat each enemy-robot
+//"LOSE" - Player robot's health is zero or less
 
 
 //Alert playeres that they are starting the round
 window.alert("Welcome to Robot Gladiators!");
   // Tracks our player-robot's info
 var playerName = window.prompt("what is your robot's name?");
-console.log(playerName, playerHealth, playerAttack);
+
+
+
+//Global variables
+var playerHealth =100;
+var playerAttack =10;
+var playerMoney = 10;
+
+var enemyHealth = 50;
+var enemyAttack = 12; 
+var enemyNames = ["Roborto", " Amy Android", " Robo Trumble"];
 
 
 //this is a function expression
-var fight = function(){
-   
+//Check notes: Arugments vs Parameters
+//Has to be above for loop because it will be called within the for loop
+var fight = function(enemyName) {
+    //fight function statements go here
+    
 }
+
+
+
+//Declared Array containing elements with enemy Robot Names
+
+//Displays length of array elements. The array index is always -1 of the element array
+//console.log(enemyNames.length);
+
+
+
+
+
+
 
  
 //Prompts user to fight on or skip. Declared variable 'promptFight'
@@ -27,19 +50,19 @@ var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? En
 if (promptFight === "FIGHT" || promptFight ==="fight" ){
     //remove enemy's health by subratricting the amount set in the playerAttack
     enemyHealth = enemyHealth - playerAttack;
-    console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has "  + enemyHealth + " health remaining.");
+    console.log(playerName + " attacked " + enemyNames + ". " + enemyNames + " now has "  + enemyHealth + " health remaining.");
 
     //Enemy's health will be checked if condition executes
 if (enemyHealth <= 0){
-    window.alert(enemyName + " has died!");
+    window.alert(enemyNames + " has died!");
 }
 else {
-    window.alert(enemyName + " still has " + enemyHealth + " health left.");
+    window.alert(enemyNames + " still has " + enemyHealth + " health left.");
 }
 
 //remove player's health by subtracting the amount set in the enemyAttack variable
 playerHealth = playerHealth - enemyAttack;
-console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
+console.log(enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
 
 //player's health will be checked if condition executes
 if (playerHealth <=0){
@@ -65,6 +88,12 @@ if (confirmSkip){
 //if no (false), ask question again by running fight  () again
 else{
 window.alert("You need to choose a valid option. Try again!");
-fight();
+
     }
+}
+
+//for loop initializing the counter, evaluating counter will stop before the array elements of 3 is reached, and incrementing the iterator
+for (var i =0; i <enemyNames.length; i++){
+    //Displays enemy elements in order, and the array index of each enemy robo fighter
+    console.log(enemyNames[i]);
 }
