@@ -27,27 +27,21 @@ var playerName = window.prompt("what is your robot's name?");
 //Has to be above for loop because it will be called within the for loop
 var fight = function(enemyName) {
     //fight function statements go here
-    
 
-
-
-
-//Declared Array containing elements with enemy Robot Names
+//repeat and execute as long as the enemy-robot is alive. Ends when 1 enemy robo dies
+while(enemyHealth > 0){
+    //place fight function code block here
+    //Declared Array containing elements with enemy Robot Names
 
 //Displays length of array elements. The array index is always -1 of the element array
 //console.log(enemyNames.length);
 
 //repeat and execute as long as player robot 
-while (enemyHealth > 0){
-    //place fight function code block here
-}
 
 
 
 
 
-
- 
 //Prompts user to fight on or skip. Declared variable 'promptFight'
 var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT or SKIP' to choose");
 //if player choses to fight, then fight. The || is an "or" operator. Check this condition
@@ -97,9 +91,16 @@ window.alert("You need to choose a valid option. Try again!");
 }
 
 //for loop initializing the counter, evaluating counter will stop before the array elements of 3 is reached, and incrementing the iterator
+}  
+
+
+
+
+
 };
 for (var i =0; i <enemyNames.length; i++){
     //Displays enemy elements in order, and the array index of each enemy robo fighter
-    var enemyNamesCall = enemyNames[i];
-    fight(enemyNamesCall);
+    var pickedEnemyName = enemyNames[i];
+    enemyHealth = 50;
+    fight(pickedEnemyName);
 }
