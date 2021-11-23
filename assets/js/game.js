@@ -28,9 +28,11 @@ var playerName = window.prompt("what is your robot's name?");
 var fight = function(enemyName) {
     //fight function statements go here
 
-//repeat and execute as long as the enemy-robot is alive. Ends when 1 enemy robo dies
+//repeat and execute as long as the enemy-robot is alive. Ends until all robots are killed, even if player health is exhausted before
 while(enemyHealth > 0){
     //place fight function code block here
+
+
     //Declared Array containing elements with enemy Robot Names
 
 //Displays length of array elements. The array index is always -1 of the element array
