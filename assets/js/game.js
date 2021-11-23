@@ -3,6 +3,7 @@
 //  *Fight all enemy-robots
 //  *Defeat each enemy-robot
 //"LOSE" - Player robot's health is zero or less
+//If the enemy robot's health is zero or less, exit from the fight loop
 
 
 //Alert playeres that they are starting the round
@@ -26,10 +27,11 @@ var playerName = window.prompt("what is your robot's name?");
 //Check notes: Arugments vs Parameters
 //Has to be above for loop because it will be called within the for loop
 var fight = function(enemyName) {
-    //fight function statements go here
+    //Ask the player if they'd like to fight or run
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
 
 //repeat and execute as long as the enemy-robot is alive. Ends until all robots are killed, even if player health is exhausted before
-while(enemyHealth > 0){
+while( playerHealth > 0 && enemyHealth > 0){
     //place fight function code block here
 
 
@@ -41,11 +43,28 @@ while(enemyHealth > 0){
 //repeat and execute as long as player robot 
 
 
+//if player chooses to skip, this condition will execute
+if (promptFight === "skip" || promptFight === "SKIP"){
+    //confirm player wants to skip
+    var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+    //Condition will execute if player confirms resignation. 
+    if (confirmSkip){
+    
+    window.alert(playerName + " has decided to skip this fight. Goodbye!");
 
+    //subtract money from playerMoney for skipping
+    playerMoney = playerMoney -10;
+    console.log( playerName + " has skipped this fight. You now have " + playerMoney + " credits left.");
+    break;
+    }
 
+//if no (false), ask question again by running fight  () again
+        else{
+window.alert("You need to choose a valid option. Try again!");
 
-//Prompts user to fight on or skip. Declared variable 'promptFight'
-var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT or SKIP' to choose");
+        }
+}
+
 //if player choses to fight, then fight. The || is an "or" operator. Check this condition
 if (promptFight === "FIGHT" || promptFight ==="fight" ){
     //remove enemy's health by subratricting the amount set in the playerAttack
@@ -55,7 +74,15 @@ if (promptFight === "FIGHT" || promptFight ==="fight" ){
     //Enemy's health will be checked if condition executes
 if (enemyHealth <= 0){
     window.alert(enemyName + " has died!");
+                                              
+
+    //award player money for winning
+    playerMoney = playerMoney + 20;
+    //leave while() loop since enemy is dead
+    //will move on and attack next enemy immediately after killing prior enemy robot
+    break;
 }
+//Display's current enemy's health until 0 health is reached
 else {
     window.alert(enemyName + " still has " + enemyHealth + " health left.");
 }
@@ -65,35 +92,20 @@ playerHealth = playerHealth - enemyAttack;
 console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
 
 //player's health will be checked if condition executes
-if (playerHealth <=0){
+        if (playerHealth <=0){
     window.alert(playerName + " has died!");
-}
-else{
+    //Exit this loop if player health is at 0 or less
+    break;
+        }
+        else{
     window.alert(playerName + " still has " + playerHealth + " health left.");
-}
+        }
 
 }
-//if player chooses to skip, this condition will execute
-else if (promptFight === "skip" || promptFight === "SKIP"){
-    //confirm player wants to skip
-    var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-//Condition will execute if player confirms resignation. 
-if (confirmSkip){
-    window.alert(playerName + " has decided to skip this fight. Goodbye!");
 
-    //subtract money from playerMoney for skipping
-    playerMoney = playerMoney -2;
-}
-
-//if no (false), ask question again by running fight  () again
-else{
-window.alert("You need to choose a valid option. Try again!");
-
-    }
-}
 
 //for loop initializing the counter, evaluating counter will stop before the array elements of 3 is reached, and incrementing the iterator
-}  
+};
 
 
 
