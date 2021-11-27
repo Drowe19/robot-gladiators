@@ -1,48 +1,19 @@
-//After defeating enemy, ask the user if they would like to purchase an item from the store
+/* Game functions */
 
-//the user can either purchase health or attack pts, if they can afford it
+//function to generate a random numeric value 
+    // max is 60, and min is 40
+    var randomNumber = function(min, max){
 
-//Display player's score using an alert
-//THen ask player if they want to play again
-
-
-//If player defeats OR skips enemy-robot, we'll ask if they want to vist the shop
-
-
-//Wrap the game logic in startGame() function
-
-//WHen the player is defeated, or there are no more enemies, call an endGame() function that: 
-// *Alerts the player's total stats
-// *Asks the player if they want to play again
-// *If yes, call startGame() to restart the game
-
-//After the player skips or defeats an enemy (And there are still more robots to fight):
-// *Ask the player if they want to "shop"
-// *If no, continue as normal
-// *If yes, call the shop() function, ask player if they want to "refill" health, "upgrade" attack, or "leave" the shop
-// *If refill, subtract money points form player and increase helath
-// *If upgrade, subratract money pts from player and increase attack power
-//* *If leave, alert goodbye, and exit the function
-//* If any other invalid option, call shope() again
+    
+        //reset health by assigning random value between 40 (min) - 60 (max) before starting a new fight
+        var value = Math.floor(Math.random() *(max - min + 1) + min);
+        //returns value of randomNumber
+        return value;
+    };
 
 
 
 
-
-//Game States
-//"WIN" - Player robot has defeated all enemy-robots
-//  *Fight all enemy-robots
-//  *Defeat each enemy-robot
-//"LOSE" - Player robot's health is zero or less
-//If the enemy robot's health is zero or less, exit from the fight loop
-
-
-//      ** TIPS TO REMEMBER
-//Displays length of array elements. The array index is always -1 of the element array
-//console.log(enemyNames.length);
-
-
-//Alert playeres that they are starting the round
 window.alert("Welcome to Robot Gladiators!");
   // Tracks our player-robot's info
 
@@ -82,7 +53,8 @@ if (promptFight === "skip" || promptFight === "SKIP"){
     window.alert(playerName + " has decided to skip this fight. Goodbye!");
 
     //subtract money from playerMoney for skipping
-    playerMoney = playerMoney -10;
+    //will not display a negative money value using math.max object
+    playerMoney = Math.max(0, playerMoney - 10);
     console.log( playerName + " has skipped this fight. You now have " + playerMoney + " credits left.");
     break;
     }
@@ -97,8 +69,12 @@ window.alert("You need to choose a valid option. Try again!");
 
 //if player choses to fight, then fight. The || is an "or" operator. Check this condition
 if (promptFight === "FIGHT" || promptFight ==="fight" ){
+
+    //generate random damage value based on player's attack power
+    var damage = randomNumber(playerAttack - 3, playerAttack);
     //remove enemy's health by subratricting the amount set in the playerAttack
-    enemyHealth = enemyHealth - playerAttack;
+    //will not display a negative enemy health value using the math.max object
+    enemyHealth = Math.max(0, enemyHealth - damage);
     console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has "  + enemyHealth + " health remaining.");
 
     //Enemy's health will be checked if condition executes
@@ -117,8 +93,10 @@ else {
     window.alert(enemyName + " still has " + enemyHealth + " health left.");
 }
 
+var damage = randomNumber(enemyAttack - 3, enemyAttack);
 //remove player's health by subtracting the amount set in the enemyAttack variable
-playerHealth = playerHealth - enemyAttack;
+//will not display a negative player health value, from using the math.max object
+playerHealth = Math.max(0, playerHealth - damage);
 console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
 
 //player's health will be checked if condition executes
@@ -129,7 +107,7 @@ console.log(enemyName + " attacked " + playerName + ". " + playerName + " now ha
     }
     else{
     window.alert(playerName + " still has " + playerHealth + " health left.");
-        }
+    }
 
     }
   }
@@ -159,10 +137,12 @@ for (var i =0; i <enemyNames.length; i++){
     //pick new enemy to fight based on index of enemyNames array
     //pickedEnemyName is a local variable
     var pickedEnemyName = enemyNames[i];
-    //reset health before starting a new fight
-    enemyHealth = 50;
     
-    //pass the pickedEnemyName variable's value into the fight function call where it will assume the value of the enemy name parameter
+    //set enemy Health
+    enemyHealth = randomNumber(40,60);
+    
+    
+    //pass the pickedEnemyName variable's value in to the fight function call where it will assume the value of the enemy name parameter
     fight(pickedEnemyName);
     //if we're not at the last enemy in the array
         if (playerHealth > 0 && i < enemyNames.length - 1){
