@@ -114,7 +114,7 @@ var startGame = function(){
     //local variables within local scope 
 
 
-for (var i =0; i <enemyInfo.Length; i++){
+for (var i =0; i <enemyInfo.length; i++){
     //Displays enemy elements in order, and the array index of each enemy robo fighter
     //array index starts at 0, so it needs to have 1 added to it to display proper round #
     if (playerInfo.health > 0) {
@@ -131,7 +131,7 @@ for (var i =0; i <enemyInfo.Length; i++){
     //pass the pickedEnemyName variable's value in to the fight function call where it will assume the value of the enemy name parameter
     fight(pickedEnemyObj);
     //if we're not at the last enemy in the array
-        if (playerInfo.health > 0 && i < enemyInfo.Length - 1){
+        if (playerInfo.health > 0 && i < enemyInfo.length - 1){
             //ask if players wants to use the store before next round
             var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
 
