@@ -11,7 +11,7 @@
         return value;
     };
 
-window.alert("Welcome to Robot Gladiators!");
+
   // Tracks our player-robot's info
 
 //this is a function expression
@@ -119,6 +119,7 @@ for (var i =0; i <enemyInfo.length; i++){
     //array index starts at 0, so it needs to have 1 added to it to display proper round #
     if (playerInfo.health > 0) {
         window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+        debugger;
     
     //pick new enemy to fight based on index of enemys array
     //pickedEnemyName is a local variable
@@ -209,10 +210,22 @@ var shop = function(){
     }
 }; 
 
+//function to set name
+var getPlayerName = function(){
+    //initalize the name variable before entering the while loop to guarantee entering the loop at least once to prompt the player for the player-robot name
+    var name = "";
+    //will make robot name prompt reappear if no name is entered
+    while (name ==="" || name === null){
+    name = prompt("What is your robot's name?");
+    }
+    return name;
+} ; 
+
 
 //Global object properties
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    //place function call in the playerInfo.name object property
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
