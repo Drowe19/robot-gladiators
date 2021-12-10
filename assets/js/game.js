@@ -55,8 +55,12 @@ var fight = function(enemy) {
    
     //repeat and execute as long as the enemy-robot is alive. Ends until all robots are killed, even if player health is exhausted before
     while( playerInfo.health > 0 && enemy.health > 0){
+        if (isPlayerTurn){
+
         //Will the player like to fight or skip - function call
-        fightOrSkip();
+        if (fightOrSkip()){
+            break;
+        }
         //if true, leave fight by breaking loop
     
     //generate random damage value based on player's attack power
@@ -81,9 +85,8 @@ var fight = function(enemy) {
     //Display's current enemy's health until 0 health is reached
     else {
         window.alert(enemy.name + " still has " + enemy.health + " health left.");
-       
     }
-     else{
+} else {
         var damage = randomNumber(enemy.attack - 3, enemy.attack);
     
     //remove player's health by subtracting the amount set in the enemy.attack variable
@@ -99,10 +102,11 @@ var fight = function(enemy) {
             break;
         }
         else{
-        window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.")
+        window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
         }
     }
-}
+    //switch turn order for next round
+    }
 };
     
     
