@@ -188,35 +188,35 @@ var endGame = function(){
 
 var shop = function(){
     //ask player what they'd like to do
-    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice.");
+    var shopOptionPrompt = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 1 for REFILL, 2 for UPGRADE , or 3 to LEAVE");
 
+
+    //parseInt function: Takes a string and converts it into an integer. 
+    //If there is no integer present, NaN, or, Not a Number will be the output
+    shopOptionPrompt = parseInt(shopOptionPrompt);
 
     //1)    use switch to carry out action. Whatever value user enters for shopOptionPrompt will execute said case scenario
     //2)    Nest if statements to stop player from upgrading robot if there is not enough money available
     //3)    Account for player entering captial or lowercase input. Enter second case scenario
     switch (shopOptionPrompt){
-        case "REFILL":  //new case
-        case "refill":
-            //Refill Health function call for player to refill health
-         playerInfo.refillHealth();
-            break;
-        case "UPGRADE": //new case
-        case "upgrade":
-            //upgrade attack function call to upgrade player's attack
-         playerInfo.upgradeAttack();
-            break;
-        case "LEAVE":   //new case
-        case "leave":
-            window.alert("Leaving the store.");
-            
-            //do nothing, so function will end
-         break;
-        default:
-            window.alert("You did not pick a valid option. Try again.");
+        //METHOD: Refill Health function call for player to refill health
+        case 1:  //new case
+        playerInfo.refillHealth();
+        break;
 
-            //call shop() again to force player to pick a valid option
-            shop();
+        //METHOD: upgrade attack function call to upgrade player's attack
+        case 2: playerInfo.upgradeAttack();
+        break;
+
+        case 3:
+            window.alert("Leaving the store.");
             break;
+            default:
+                window.alert("You did not pick a valid option. Try again.");
+
+                //Takes user back to shop
+                shop();
+                break;
     }
 }; 
 
