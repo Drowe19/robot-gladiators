@@ -53,15 +53,26 @@ var fightOrSkip = function(){
 
 var fight = function(enemy) {
    
-    //repeat and execute as long as the enemy-robot is alive. Ends until all robots are killed, even if player health is exhausted before
+    
+        
+        //keep track of who goes first
+        var isPlayerTurn = true;
+
+        //randomly change turn order
+        if (Math.random() > 0.5){
+            isPlayerTurn = false;
+        }
+
+        //repeat and execute as long as the enemy-robot is alive. Ends until all robots are killed, even if player health is exhausted before
     while( playerInfo.health > 0 && enemy.health > 0){
         if (isPlayerTurn){
-
-        //Will the player like to fight or skip - function call
-        if (fightOrSkip()){
-            break;
+            //ask player if they'd like to fight or skip using fightOrSkip function
+            if (fightOrSkip()){
+                //if true, leave fight by breaking loop
+                break;
+            }
         }
-        //if true, leave fight by breaking loop
+
     
     //generate random damage value based on player's attack power
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
@@ -86,6 +97,7 @@ var fight = function(enemy) {
     else {
         window.alert(enemy.name + " still has " + enemy.health + " health left.");
     }
+    //player gets attacked fi
 } else {
         var damage = randomNumber(enemy.attack - 3, enemy.attack);
     
@@ -98,7 +110,7 @@ var fight = function(enemy) {
     //player's health will be checked if condition executes
         if (playerInfo.health <=0){
         window.alert(playerInfo.name + " has died!");
-            //Exit this loop if player health is at 0 or less
+            //Exit this while loop if player health is at 0 or less
             break;
         }
         else{
@@ -106,8 +118,8 @@ var fight = function(enemy) {
         }
     }
     //switch turn order for next round
-    }
-};
+    isplayerTurn = !isPlayerTurn;
+    };
     
     
 
